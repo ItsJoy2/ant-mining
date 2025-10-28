@@ -9,6 +9,9 @@ use App\Http\Controllers\user\PackagesController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\TransactionsController;
 
+
+Route::get('/', [UserController::class, 'home'])->name('user.home');
+
 Route::prefix('user')->middleware('auth')->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('user.dashboard');

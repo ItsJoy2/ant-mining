@@ -25,6 +25,9 @@ class UserController extends Controller
     protected UserService $userService;
     public function __construct(UserService $userService){$this->userService = $userService;}
 
+    public function home() {
+        return view ('user.pages.homepage.index');
+    }
     public function UserProfile(Request $request):JsonResponse
     {
         return $this->userService->UserProfile($request);

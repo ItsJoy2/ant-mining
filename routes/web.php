@@ -17,9 +17,9 @@ use App\Http\Controllers\admin\WithdrawSettingsController;
 use App\Http\Controllers\admin\ActivationSettingController;
 use App\Http\Controllers\admin\AuthenticatedSessionController;
 
-Route::get('/', function () {
-    return redirect()->route('user.dashboard');
-});
+// Route::get('/', function () {
+//     return redirect()->route('user.dashboard');
+// });
 
 Route::get('admin/dashboard',[AdminDashboardController::class,'index'])->middleware(['auth', 'verified'])->name('admin.dashboard');
 
