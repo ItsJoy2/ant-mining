@@ -63,22 +63,22 @@
                                        value="{{ old('wallet_address') }}" placeholder="Enter your wallet address" required autofocus>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="password">Password *</label>
                                 <input type="password" name="password" id="password"
                                        class="form-control text-white p_input" required>
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group d-flex align-items-center justify-content-between">
+                            {{-- <div class="form-group d-flex align-items-center justify-content-between">
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input type="checkbox" class="form-check-input" name="remember"
                                                {{ old('remember') ? 'checked' : '' }}>
                                         Remember me
                                     </label>
-                                </div>
+                                </div> --}}
                                 {{-- <a href="{{ route('password.request') }}" class="forgot-pass">Forgot password</a> --}}
-                            </div>
+                            {{-- </div> --}}
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>

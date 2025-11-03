@@ -6,10 +6,13 @@
   <h3 class="page-title">Deposit History</h3>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Finance</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Deposits</li>
+        <li class="breadcrumb-item">
+        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-danger">
+            <i class="mdi mdi-arrow-left-circle pt-2"></i> Return Back
+        </a>
+        </li>
     </ol>
-  </nav>
+    </nav>
 </div>
 
 <div class="col-lg-12 grid-margin stretch-card">
@@ -62,3 +65,4 @@
 </div>
 
 @endsection
+

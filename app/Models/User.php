@@ -21,12 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'wallet_address',
-        'mobile',
         'funding_wallet',
         'spot_wallet',
+        'global_income',
         'refer_by',
-        'last_activated_at',
-        'is_block',
         'password',
     ];
 
@@ -35,7 +33,6 @@ class User extends Authenticatable
         'remember_token'
     ];
     protected $casts = [
-        'last_activated_at' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -48,22 +45,10 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'refer_by');
     }
 
-    public function totalTeamMembersCount(int $level = 1): int
+    public function investors(): HasMany
     {
-        $count = $this->referrals()->count();
-
-        foreach ($this->referrals as $referral) {
-            $count += $referral->totalTeamMembersCount($level + 1);
-        }
-
-        return $count;
+        return $this->hasMany(Investor::class, 'user_id');
     }
-
-    public function investors()
-    {
-        return $this->hasMany(Investor::class);
-    }
-
 
 }
 

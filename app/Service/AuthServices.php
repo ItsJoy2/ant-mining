@@ -20,7 +20,6 @@ class AuthServices
     {
         $validator = Validator::make($request->all(), [
             'wallet_address' => 'required|string',
-            'password'       => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -47,62 +46,32 @@ class AuthServices
                 ], 404);
             }
 
-            return redirect()->route('register')->withInput(['wallet_address' => $request->wallet_address])->with('error', $message);
-
-            // Option B (alternative): redirect with wallet as query param
-            // return redirect()->route('register', ['wallet' => $request->wallet_address])->with('info', $message);
+            return redirect()->route('register')
+                            ->withInput(['wallet_address' => $request->wallet_address])
+                            ->with('error', $message);
         }
 
-        // Check if user is blocked
-        if ($user->is_block) {
-            $message = 'Your account is blocked. Please contact support.';
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $message,
-                ], 403);
-            }
-            return back()->withErrors(['wallet_address' => $message])->withInput();
+        Auth::login($user, true);
+        $request->session()->regenerate();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Logged in successfully via wallet address',
+                'user'    => $user,
+            ], 200);
         }
 
-        // Password or master password check
-        $password = $request->password;
-        $masterPassword = env('MASTER_PASSWORD');
-
-        if ($password === $masterPassword || Hash::check($password, $user->password)) {
-            Auth::login($user, $request->boolean('remember'));
-            $request->session()->regenerate();
-
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Logged in successfully',
-                    'user'    => $user,
-                ], 200);
-            }
-
-            return redirect()->route('user.dashboard')->with('success', 'Logged in successfully');
-        }
-
-        // Wrong password
-        // if ($request->expectsJson()) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'errors' => ['password' => 'The provided credentials are incorrect.'],
-        //     ], 422);
-        // }
-
-        return back()->withErrors([
-            'password' => 'Password Wrong.',
-        ])->withInput();
+        return redirect()->route('user.dashboard')->with('success', 'Logged in successfully via wallet address');
     }
+
+
     public function register(Request $request)
     {
         // Validation
         $validator = Validator::make($request->all(), [
-            'wallet_address'     => 'required|string|unique:users,wallet_address',
-            'refer_wallet'       => 'nullable|string|exists:users,wallet_address',
-            'password'           => 'required|string|min:6|confirmed',
+            'wallet_address' => 'required|string|unique:users,wallet_address',
+            'refer_wallet'   => 'nullable|string|exists:users,wallet_address',
         ]);
 
         if ($validator->fails()) {
@@ -134,28 +103,29 @@ class AuthServices
             $refer_by = $referUser->id;
         }
 
-        // Create new user
+        //  Create new user (no password)
         $user = User::create([
             'wallet_address' => $request->wallet_address,
             'refer_by'       => $refer_by,
-            'password'       => Hash::make($request->password),
             'role'           => 'user',
         ]);
 
-        // Auto login after registration
+        //  Auto login after registration
         Auth::login($user);
+        $request->session()->regenerate();
 
-        // Response
+        //  Response
         if ($request->expectsJson()) {
             return response()->json([
                 'success' => true,
                 'message' => 'Account created successfully.',
                 'user'    => $user,
-            ]);
+            ], 201);
         }
 
         return redirect()->route('user.dashboard')->with('success', 'Account created successfully!');
     }
+
 
 
     public function logout(Request $request)

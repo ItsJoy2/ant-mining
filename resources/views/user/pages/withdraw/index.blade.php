@@ -4,11 +4,14 @@
 <div class="page-header">
     <h3 class="page-title"> Withdraw </h3>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Wallets</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Withdraw</li>
-        </ol>
-    </nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-danger">
+                            <i class="mdi mdi-arrow-left-circle pt-2"></i> Return Back
+                        </a>
+                        </li>
+                    </ol>
+                </nav>
 </div>
 
 <div class="row">

@@ -42,7 +42,7 @@
               </div>
             </div>
             <div class="col">
-              <h1 class="invoice-title">Yeeo Finance</h1>
+              <h1 class="invoice-title">ANT Mining</h1>
               <p class="invoice-subtitle">Secure Cryptocurrency Payment</p>
             </div>
             <div class="col-auto text-end">
@@ -115,7 +115,7 @@
               <div class="info-card p-3">
                 <h6><i class="fas fa-info-circle me-2 text-info"></i> Network Details</h6>
                 <div class="row text-sm">
-                  <div class="col-sm-4"><strong>Network:</strong><br><span id="networkName" class="text-warning">Binance Smart Chain</span></div>
+                  <div class="col-sm-4"><strong>Network:</strong><br><span id="networkName" class="text-warning">Mind Smart Chain</span></div>
                   <div class="col-sm-4"><strong>Token:</strong><br><span id="tokenName" class="text-warning"></span></div>
                   <div class="col-sm-4"><strong>Confirmations:</strong><br><span class="text-warning">12 blocks</span></div>
                 </div>
@@ -132,7 +132,7 @@
             <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
               <i class="fas fa-lock text-success"></i><span>Powered by Blockchain Technology</span><i class="fas fa-check-circle text-success"></i>
             </div>
-            <small>© {{ date('Y') }}  YEEO Finance. All rights reserved.</small>
+            <small>© {{ date('Y') }}  ANT Mining. All rights reserved.</small>
           </div>
         </div>
       </div>

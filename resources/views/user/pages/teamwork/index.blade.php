@@ -5,13 +5,16 @@
 <div class="page-header">
     <h3 class="page-title">My Direct Referrals</h3>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Direct Referrals</li>
-        </ol>
-    </nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-danger">
+                            <i class="mdi mdi-arrow-left-circle pt-2"></i> Return Back
+                        </a>
+                        </li>
+                    </ol>
+                </nav>
 </div>
-    <form method="GET" action="{{ route('user.direct.referrals') }}" class="form-inline mb-3">
+    {{-- <form method="GET" action="{{ route('user.direct.referrals') }}" class="form-inline mb-3">
         <label for="status" class="mr-2">Filter by Status:</label>
         <select name="status" id="status" class="form-control mr-2 text-light">
             <option value="" {{ $statusFilter == '' ? 'selected' : '' }}>-- All --</option>
@@ -19,7 +22,7 @@
             <option value="inactive" {{ $statusFilter == 'inactive' ? 'selected' : '' }}>Inactive</option>
         </select>
         <button type="submit" class="btn btn-primary py-2">Filter</button>
-    </form>
+    </form> --}}
 
 <div class="col-lg-12 grid-margin stretch-card">
 
@@ -33,10 +36,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Wallet Address</th>
                                 <th>Total running Invest</th>
-                                <th>Status</th>
                                 <th>Join Date</th>
                             </tr>
                         </thead>
@@ -44,16 +45,8 @@
                             @foreach ($referrals as $index => $referral)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $referral->name }}</td>
-                                    <td>{{ $referral->email }}</td>
+                                    <td>{{ $referral->wallet_address }}</td>
                                     <td>${{ number_format($referral->running_investment_total, 2) }}</td>
-                                    <td>
-                                        @if ($referral->is_active)
-                                            <span class="badge badge-success">Active</span>
-                                        @else
-                                            <span class="badge badge-secondary">Inactive</span>
-                                        @endif
-                                    </td>
                                     <td>{{ $referral->created_at->format('d M Y') }}</td>
                                 </tr>
                             @endforeach
@@ -66,3 +59,4 @@
 </div>
 
 @endsection
+

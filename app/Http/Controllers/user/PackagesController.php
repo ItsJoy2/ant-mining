@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\User;
-use App\Models\Founder;
 use App\Models\Package;
 use App\Models\Category;
 use App\Models\Investor;
@@ -11,11 +10,10 @@ use App\Models\Transactions;
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Models\GlobalIncomeSetting;
 use App\Service\TransactionService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cache;
 
 class PackagesController extends Controller
 {
@@ -45,13 +43,13 @@ class PackagesController extends Controller
 
         $user = $request->user();
 
-        if (!$user->is_active) {
-            return back()->with('error', 'Your account is not active. You cannot invest.');
-        }
+        // if (!$user->is_active) {
+        //     return back()->with('error', 'Your account is not active. You cannot invest.');
+        // }
 
-        if ($user->is_block) {
-            return back()->with('error', 'Your account is blocked. You cannot invest.');
-        }
+        // if ($user->is_block) {
+        //     return back()->with('error', 'Your account is blocked. You cannot invest.');
+        // }
 
         $package = Package::findOrFail($request->package_id);
 
@@ -157,5 +155,45 @@ class PackagesController extends Controller
         ->paginate(5);
         return view('user.pages.package.my-investment', compact('investors'));
     }
+
+
+    public function myGlobalTarget()
+    {
+        $user = auth()->user();
+        $settings =GlobalIncomeSetting::first();
+
+        if (!$settings) {
+            return back()->with('error', 'Global income settings not found.');
+        }
+
+        $directReferrals = $user->referrals()->pluck('id');
+        $directInvest = Investor::whereIn('user_id', $directReferrals)->sum('amount');
+
+        $teamIds = $this->getTeamIds($user->id, 5)->diff($directReferrals);
+        $teamInvest = Investor::whereIn('user_id', $teamIds)->sum('amount');
+
+        return view('user.pages.teamwork.global-target', compact(
+            'user',
+            'settings',
+            'directInvest',
+            'teamInvest'
+        ));
+    }
+    private function getTeamIds($userId, $levels = 5)
+    {
+        $team = collect();
+        $currentLevel = collect([$userId]);
+
+        for ($i = 1; $i <= $levels; $i++) {
+            $nextLevel = User::whereIn('refer_by', $currentLevel)->pluck('id');
+            if ($nextLevel->isEmpty()) break;
+
+            $team = $team->merge($nextLevel);
+            $currentLevel = $nextLevel;
+        }
+
+        return $team->unique()->values();
+    }
+
 
 }

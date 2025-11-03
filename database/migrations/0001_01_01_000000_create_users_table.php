@@ -18,19 +18,12 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('wallet_address')->unique();
             $table->string('email')->nullable()->unique();
-            $table->string('mobile',15)->nullable();
             $table->decimal('funding_wallet', 20, 8)->default(0.00000000);
             $table->decimal('spot_wallet', 20, 8)->default(0.00000000);
             $table->foreignId('refer_by')->nullable();
-            $table->boolean('is_block')->default(false);
-            $table->boolean('kyc_status')->default(false);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->boolean('global_income')->default(0);
+            $table->string('password')->nullable();
             $table->enum('role',['user','admin'])->default('user');
-            $table->date('birthday')->nullable();
-            $table->string('nid_or_passport')->nullable();
-            $table->string('address')->nullable();
-            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -54,11 +47,8 @@ return new class extends Migration
            'name' => 'admin',
            'wallet_address' => 'oxdfarefererewtgwertw',
            'email' => 'admin@antmining.com',
-           'mobile' => '0123456789',
            'password' => Hash::make('Admin123$'),
            'role' => 'admin',
-           'is_block' => false,
-           'email_verified_at' => now(),
        ]);
     }
 

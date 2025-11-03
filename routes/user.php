@@ -21,8 +21,8 @@ Route::prefix('user')->middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('user.logout');
 
     // activation
-    Route::get('activation', [UserController::class, 'showActivation'])->name('user.activation');
-    Route::post('account/activate', [UserController::class, 'activeAccount'])->name('user.account.activate');
+    // Route::get('activation', [UserController::class, 'showActivation'])->name('user.activation');
+    // Route::post('account/activate', [UserController::class, 'activeAccount'])->name('user.account.activate');
 
     // package
     Route::get('packages', [PackagesController::class, 'index'])->name('user.packages');
@@ -44,19 +44,20 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
        //transfer
 
-    Route::get('/transfer', [TransactionsController::class, 'showTransferForm'])->name('user.transfer.form');
-    Route::post('/transfer', [TransactionsController::class, 'transfer'])->name('user.transfer.submit');
+    // Route::get('/transfer', [TransactionsController::class, 'showTransferForm'])->name('user.transfer.form');
+    // Route::post('/transfer', [TransactionsController::class, 'transfer'])->name('user.transfer.submit');
 
     // Transactions
     Route::get('transactions', [TransactionsController::class, 'transactions'])->name('user.transactions');
 
 
     //profile
-    Route::get('profile', [AuthController::class, 'profileEdit'])->name('user.profile');
-    Route::post('profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
-    Route::post('change-password', [AuthController::class, 'changePassword'])->name('user.changePassword');
+    // Route::get('profile', [AuthController::class, 'profileEdit'])->name('user.profile');
+    // Route::post('profile', [AuthController::class, 'updateProfile'])->name('user.profile.update');
+    // Route::post('change-password', [AuthController::class, 'changePassword'])->name('user.changePassword');
     Route::get('my-referrals', [UserController::class, 'directReferrals'])->name('user.direct.referrals');
 
+    Route::get('global-income-report', [PackagesController::class, 'myGlobalTarget'])->name('user.myGlobalTarget');
 
 
 

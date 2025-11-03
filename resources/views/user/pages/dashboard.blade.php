@@ -4,7 +4,7 @@
 
 @auth
     @if(!auth()->user()->is_active)
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card corona-gradient-card">
                     <div class="card-body py-0 px-0 px-sm-3">
@@ -25,11 +25,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     @endif
 @endauth
 
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-xl-6 grid-margin stretch-card">
                 <div class="card ">
                     <script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
@@ -42,11 +42,11 @@
                     <gecko-coin-price-chart-widget locale="en" dark-mode="true" outlined="true" coin-id="polkadot" initial-currency="usd" height="200"></gecko-coin-price-chart-widget>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
 {{-- wallet card section  --}}
 
-            <div class="row">
+            <div class="row text-center justify-content-center">
               <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -97,66 +97,6 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{ number_format($user->token_wallet, 2) }}</h3>
-                          {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-bitcoin icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Yeeo Token Wallet</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">${{ number_format($dashboard['earningBalance'], 2) }}</h3>
-                          {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p> --}}
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-bank icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Earning Balance</h6>
-                  </div>
-                </div>
-              </div>
-              {{-- <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-trending-down icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Monthly ROI</h6>
-                  </div>
-                </div>
-              </div> --}}
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">${{ number_format($dashboard['totalWithdraw'], 2) }}</h3>
                           {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
                         </div>
@@ -171,14 +111,14 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+              {{-- <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">${{ number_format($dashboard['totalTransfer'], 2) }}</h3>
-                          {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -190,16 +130,15 @@
                     <h6 class="text-muted font-weight-normal">Total Transfer</h6>
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+              {{-- <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">${{ number_format($dashboard['totalExpectedReturn'], 3) }}</h3>
-                          {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
                         </div>
                       </div>
                       <div class="col-3">
@@ -211,40 +150,20 @@
                     <h6 class="text-muted font-weight-normal">Current PNL</h6>
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">No Rank</h3>
-                          {{-- <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger ">
-                          <span class="mdi mdi-trophy icon-item text-warning"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Current Rank</h6>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <!-- investment Section  -->
-            @php
+            {{-- @php
                 use Illuminate\Support\Str;
 
                 $totalChangeNumber = floatval(str_replace(['%', '+', '-'], '', $dashboard['totalInvestmentChange']));
                 $runningChangeNumber = floatval(str_replace(['%', '+', '-'], '', $dashboard['runningInvestmentChange']));
                 $maturedChangeNumber = floatval(str_replace(['%', '+', '-'], '', $dashboard['maturedInvestmentChange']));
-            @endphp
+            @endphp --}}
 
-            <div class="row">
+            {{-- <div class="row">
             <!-- Total Investment -->
             <div class="col-sm-4 grid-margin">
                 <div class="card">
@@ -319,19 +238,19 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
 
-                        <div class="row">
+            {{-- <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Transaction History</h4>
-                <canvas id="transaction-history" class="transaction-chart"></canvas>
+                <canvas id="transaction-history" class="transaction-chart"></canvas> --}}
 
                 {{-- Last Transfer --}}
-                <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                {{-- <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                     <div class="text-md-center text-xl-left">
                     <h6 class="mb-1">Last Transfer</h6>
                     <p class="text-muted mb-0">
@@ -345,10 +264,10 @@
                         ${{ $dashboard['lastTransfer'] ? number_format($dashboard['lastTransfer']->amount, 2) : '0.00' }}
                     </h6>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Last Withdraw --}}
-                <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                {{-- <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                     <div class="text-md-center text-xl-left">
                     <h6 class="mb-1">Last Withdraw</h6>
                     <p class="text-muted mb-0">
@@ -362,10 +281,10 @@
                         ${{ $dashboard['lastWithdraw'] ? number_format($dashboard['lastWithdraw']->amount, 2) : '0.00' }}
                     </h6>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Last Deposit --}}
-                <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                {{-- <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                     <div class="text-md-center text-xl-left">
                     <h6 class="mb-1">Last Deposit</h6>
                     <p class="text-muted mb-0">
@@ -379,13 +298,13 @@
                         ${{ $dashboard['lastDeposit'] ? number_format($dashboard['lastDeposit']->amount, 2) : '0.00' }}
                     </h6>
                     </div>
-                </div>
+                </div> --}}
 
-                </div>
+                {{-- </div>
             </div>
-            </div>
+            </div> --}}
 
-             <div class="col-md-8 grid-margin stretch-card">
+             {{-- <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                     <div class="d-flex flex-row justify-content-between">
@@ -467,10 +386,10 @@
                 </div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
-            <div class="row">
+            {{-- <div class="row">
 
                 <!-- Active Referrals -->
                 <div class="col-md-6 col-xl-6 grid-margin stretch-card">
@@ -545,7 +464,24 @@
                     </div>
                 </div>
 
-                </div>
+                </div> --}}
+
+
+<div class="dashboard-3d-buttons">
+
+    <a href="{{ route('user.deposit.index') }}" class="btn-deposit"><i class="mdi mdi-wallet-plus"></i> Deposit Fund</a>
+    {{-- <a href="{{ route('user.dashboard') }}" class="btn-dash"><i class="mdi mdi-view-dashboard"></i> Dashboard</a> --}}
+    {{-- <a href="{{ route('user.activation') }}" class="btn-active"><i class="mdi mdi-toggle-switch"></i> Activation</a> --}}
+    <a href="{{ route('user.packages') }}" class="btn-invest"><i class="mdi mdi-package-variant-closed"></i>Purchase Mining</a>
+    <a href="{{ route('user.withdraw.index') }}" class="btn-withdraw"><i class="mdi mdi-cash-refund"></i> Withdraw</a>
+    {{-- <a href="{{ route('user.transfer.form') }}" class="btn-transfer"><i class="mdi mdi-swap-horizontal"></i> Fund Transfer</a> --}}
+    <a href="{{ route('user.direct.referrals') }}" class="btn-team"><i class="mdi mdi-account-group"></i> Teamwork</a>
+    <a href="{{ route('user.myGlobalTarget') }}" class="btn-global"><i class="mdi mdi-earth"></i> Global Income</a>
+    <a href="{{ route('user.deposit.history') }}" class="btn-history"><i class="mdi mdi-history"></i> Deposit History</a>
+    <a href="{{ route('user.transactions') }}" class="btn-trans"><i class="mdi mdi-file-document"></i> Transactions</a>
+    {{-- <a href="#" class="btn-buy"><i class="mdi mdi-currency-btc"></i> Buy YEEO</a> --}}
+    {{-- <a href="https://www.coingecko.com/en/coins/yee-token" target="_blank" class="btn-gecko"><i class="mdi mdi-web"></i> CoinGecko</a> --}}
+</div>
 
           </div>
 
@@ -569,4 +505,85 @@
         window.transactionTotalAmount = {{ $dashboard['totalDeposit'] + $dashboard['totalWithdraw'] + $dashboard['totalTransfer'] }};
     </>
 
+@endpush
+
+@push('styles')
+<style>
+    .dashboard-3d-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .dashboard-3d-buttons a {
+        border: none;
+        border-radius: 8px;
+        padding: 14px 28px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 200px;
+        text-transform: uppercase;
+        transition: all 0.15s ease-in-out;
+        user-select: none;
+        position: relative;
+    }
+
+    .dashboard-3d-buttons a:hover {
+        transform: translateY(3px);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 🟢 Same drop-shadow + unique gradients */
+    .btn-dash   { background: linear-gradient(145deg, #00b4db, #0083b0); box-shadow: 0 4px #0083b080, 0 6px 10px #0083b050; }
+    .btn-active { background: linear-gradient(145deg, #ff8c00, #ff6600); box-shadow: 0 4px #ff660080, 0 6px 10px #ff660050; }
+    .btn-invest { background: linear-gradient(145deg, #9c27b0, #6a1b9a); box-shadow: 0 4px #6a1b9a80, 0 6px 10px #6a1b9a50; }
+    .btn-deposit{ background: linear-gradient(145deg, #28a745, #218838); box-shadow: 0 4px #21883880, 0 6px 10px #21883850; }
+    .btn-withdraw{ background: linear-gradient(145deg, #ff3b3b, #b30000); box-shadow: 0 4px #b3000080, 0 6px 10px #b3000050; }
+    .btn-transfer{ background: linear-gradient(145deg, #17a2b8, #117a8b); box-shadow: 0 4px #117a8b80, 0 6px 10px #117a8b50; }
+    .btn-team   { background: linear-gradient(145deg, #00b09b, #96c93d); box-shadow: 0 4px #00b09b80, 0 6px 10px #00b09b50; }
+    .btn-history { background: linear-gradient(145deg, #b24592, #f15f79); box-shadow: 0 4px #b2459280, 0 6px 10px #b2459250; }
+    .btn-trans  { background: linear-gradient(145deg, #8e2de2, #4a00e0); box-shadow: 0 4px #4a00e080, 0 6px 10px #4a00e050; }
+    .btn-buy    { background: linear-gradient(145deg, #ffcc00, #ff9900); color: #000 !important; box-shadow: 0 4px #ff990080, 0 6px 10px #ff990050; }
+    .btn-gecko  { background: linear-gradient(145deg, #32cd32, #228b22); box-shadow: 0 4px #228b2280, 0 6px 10px #228b2250; }
+    .btn-global { background: linear-gradient(145deg, #0072ff, #00c6ff); box-shadow: 0 4px #0072ff80, 0 6px 10px #0072ff50;
+}
+
+    .dashboard-3d-buttons a .mdi {
+        font-size: 18px;
+        margin-right: 8px;
+    }
+    .content-wrapper{
+        height: 96vh;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-3d-buttons {
+            gap: 15px;
+        }
+        .dashboard-3d-buttons a {
+            flex: 1 1 calc(50% - 15px);
+            font-size: 13px;
+            padding: 12px 18px;
+            min-width: unset;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dashboard-3d-buttons a {
+            font-size: 12px;
+        }
+    }
+</style>
 @endpush

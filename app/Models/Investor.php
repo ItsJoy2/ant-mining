@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Investor extends Model
@@ -38,4 +39,8 @@ class Investor extends Model
     {
         return $this->belongsTo(Package::class);
     }
+
+
+
+
 }

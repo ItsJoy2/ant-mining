@@ -71,7 +71,7 @@
                         @error('refer_wallet') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Password</label>
                         <input type="password" class="form-control text-white p_input" name="password">
                         @error('password') <small class="text-danger">{{ $message }}</small> @enderror
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label>Confirm Password</label>
                         <input type="password" class="form-control text-white p_input" name="password_confirmation">
-                    </div>
+                    </div> --}}
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-block enter-btn">Register</button>

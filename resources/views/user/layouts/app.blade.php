@@ -23,13 +23,13 @@
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
-      @include('user.layouts.partials.__sidebar')
+      {{-- @include('user.layouts.partials.__sidebar') --}}
       <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+      <div class="container-fluid">
         <!-- partial:partials/_navbar.html -->
-        @include('user.layouts.partials.__navbar')
+        {{-- @include('user.layouts.partials.__navbar') --}}
         <!-- partial -->
-        <div class="main-panel">
+        <div class="">
           <div class="content-wrapper">
 
             @yield('userContent')
