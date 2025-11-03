@@ -61,7 +61,7 @@ class DepositController extends Controller
             "token_name"      => "MIND",
             "user_id"         => 14,
             // "contract_address"=> "0x55d398326f99059ff775485246999027b3197955",
-            "webhook_url"     => "https://yeeo.finance/api/deposit-check",
+            "webhook_url"     => "https://node.yeeo.finance/api/deposit-check",
         ];
 
         $payment = $client->request('POST', 'https://evm.blockmaster.info/api/create_invoice', [

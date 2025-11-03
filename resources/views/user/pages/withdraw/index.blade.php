@@ -39,15 +39,14 @@
                     <div class="form-group">
                         <label for="inputWallet">Wallet Address</label>
                         <input type="text"
-                               name="wallet"
-                               class="form-control text-white @error('wallet') is-invalid @enderror"
-                               id="inputWallet"
-                               placeholder="Enter Your BEP20 Wallet Address"
-                               value="{{ old('wallet') }}"
-                               required
-                               minlength="10"
-                               maxlength="70">
+                            name="wallet"
+                            class="form-control text-white"
+                            id="inputWallet"
+                            value="{{ auth()->user()->wallet_address }}"
+                            readonly  style="background: none;">
+                        <small class="form-text text-muted">This is your registered wallet address. It cannot be changed.</small>
                     </div>
+
 
                     <div class="form-group">
                         <label for="inputAmount">Withdraw Amount</label>

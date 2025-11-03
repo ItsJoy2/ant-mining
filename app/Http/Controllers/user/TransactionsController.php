@@ -124,13 +124,12 @@ class TransactionsController extends Controller
 
         $validatedData = $request->validate([
             'amount' => ['required', 'numeric', "min:$min", "max:$max"],
-            'wallet' => ['required', 'string', 'min:10', 'max:70'],
         ]);
 
         $amount = $validatedData['amount'];
         $chargeAmount = $amount * $charge / 100;
         $finalAmount = $amount - $chargeAmount;
-        $wallet = $validatedData['wallet'];
+        $wallet = $user->wallet_address;
 
         if ($user->spot_wallet < $amount) {
             return back()->with('error', 'Insufficient balance.');
