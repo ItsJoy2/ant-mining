@@ -9,11 +9,11 @@
     </div>
     <div class="card-body table-responsive">
         <form action="{{ route('admin.transactions.index') }}" method="GET" class="mb-3 d-flex align-items-center gap-2 flex-wrap">
-            <input type="text" name="email" class="form-control w-auto" placeholder="Search by email" value="{{ request('email') }}">
+            <input type="text" name="wallet_address" class="form-control w-auto" placeholder="Search by wallet address" value="{{ request('wallet_address') }}">
 
             <select name="remark" class="form-select w-auto">
                 <option value="">All Types</option>
-                @foreach(['deposit','withdrawal','transfer','account_activation', 'activation_bonus', 'trade_bonus','pnl_bonus', 'package_purchased'] as $type)
+                @foreach(['package_purchased', 'daily_pnl','pnl_bonus', 'global_income' , 'withdrawal' ] as $type)
                     <option value="{{ $type }}" {{ request('remark') == $type ? 'selected' : '' }}>
                         {{ ucwords(str_replace('_', ' ', $type)) }}
                     </option>
@@ -22,16 +22,17 @@
 
             <button type="submit" class="btn btn-primary">Search</button>
 
-            @if(request()->has('email') || request()->has('remark'))
+            @if(request()->has('wallet_address') || request()->has('remark'))
                 <a href="{{ route('admin.transactions.index') }}" class="btn btn-outline-secondary">Reset</a>
             @endif
         </form>
+
 
         <table class="table table-striped table-hover mt-4">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Username</th>
+                    <th scope="col">Wallet Address</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Transaction Type</th>
                     <th scope="col">Description</th>
@@ -43,7 +44,7 @@
                 @foreach($transactions as $index => $transaction)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $transaction->user->name }}</td>
+                    <td>{{ $transaction->user->wallet_address }}</td>
                     <td>${{ number_format($transaction->amount, 3) }}</td>
                     <td>{{ ucfirst($transaction->remark) }}</td>
                     <td>{{ $transaction->details }}</td>

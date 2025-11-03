@@ -73,7 +73,7 @@
                 </li>
 
                 <!-- Withdraw -->
-                <li class="nav-item {{ Str::contains(request()->path(), 'withdraw') ? 'active' : '' }}">
+                <li class="nav-item {{ Str::contains(request()->path(), 'admin.withdraw.index') ? 'active' : '' }}">
                     <a href="{{ route('admin.withdraw.index') }}" class="d-flex justify-content-between align-items-center">
                         <div>
                             <i class="fas fa-money-check-alt"></i>
@@ -161,7 +161,7 @@
                 </li> --}}
 
                 <!-- Settings -->
-                <li class="nav-item nav-item {{ Str::contains(request()->path(), 'settings') ? 'active' : '' }}">
+                <li class="nav-item nav-item {{ Str::contains(request()->path(), 'admin.withdraw.settings') ? 'active' : '' }}">
                     <a data-bs-toggle="collapse" href="#settings">
                         <i class="fas fa-cog"></i>
                         <p>Settings</p>
@@ -169,9 +169,9 @@
                     </a>
                     <div class="collapse" id="settings">
                         <ul class="nav nav-collapse">
-                            <li clsas="{{ Str::contains(request()->path(), 'settings') ? 'active' : '' }}"><a href="{{ route('admin.activation-settings.edit') }}"><span class="sub-item">Activation Setting</span></a></li>
-                            <li><a href="{{ route('admin.withdraw.settings') }}"><span class="sub-item">Withdraws Settings</span></a></li>
-                            <li><a href="{{ route('admin.transfer.settings') }}"><span class="sub-item">Transfer Settings</span></a></li>
+                            {{-- <li clsas="{{ Str::contains(request()->path(), 'settings') ? 'active' : '' }}"><a href="{{ route('admin.activation-settings.edit') }}"><span class="sub-item">Activation Setting</span></a></li> --}}
+                            <li class="{{ Str::contains(request()->path(), 'admin.withdraw.settings') ? 'active' : '' }}"><a href="{{ route('admin.withdraw.settings') }}"><span class="sub-item">Withdraws Settings</span></a></li>
+                            {{-- <li><a href="{{ route('admin.transfer.settings') }}"><span class="sub-item">Transfer Settings</span></a></li> --}}
                             <li><a href="{{ route('admin.general.settings') }}"><span class="sub-item">General Settings</span></a></li>
                         </ul>
                     </div>

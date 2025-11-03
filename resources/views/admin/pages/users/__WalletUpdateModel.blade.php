@@ -18,7 +18,7 @@
                         <select class="form-select" name="wallet_type" id="wallet_type" required>
                             <option value="funding_wallet">Funding Wallet</option>
                             <option value="spot_wallet">Spot Wallet</option>
-                            <option value="token_wallet">Token Wallet</option>
+                            {{-- <option value="token_wallet">Token Wallet</option> --}}
                         </select>
                     </div>
 

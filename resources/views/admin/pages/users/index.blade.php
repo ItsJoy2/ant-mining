@@ -9,7 +9,7 @@
     <div class="card-body table-responsive">
 
         {{-- Filter Form --}}
-        <form method="GET" action="{{ route('admin.users.index') }}" class="mb-3">
+        {{-- <form method="GET" action="{{ route('admin.users.index') }}" class="mb-3">
             <div class="row">
                 <div class="col-md-4">
                     <select name="filter" class="form-control">
@@ -25,7 +25,7 @@
                     <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Reset</a>
                 </div>
             </div>
-        </form>
+        </form> --}}
 
         {{-- Search Form --}}
         <div class="d-flex justify-content-end mb-3">
@@ -46,17 +46,11 @@
                     <tr>
                         <th>#</th>
                         <th>Registered</th>
-                        <th>Name</th>
+                        <th>Wallet Address</th>
                         <th>Email</th>
-                        <th>Mobile</th>
                         <th>Funding Wallet</th>
                         <th>Spot Wallet</th>
-                        <th>Token Wallet</th>
-                        <th>Refer Code</th>
                         <th>Referred By</th>
-                        <th>Email Verified</th>
-                        <th>Active</th>
-                        <th>Blocked</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -65,29 +59,11 @@
                         <tr>
                             <td>{{ $index + $users->firstItem() }}</td>
                             <td>{{ $user->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->mobile }}</td>
+                            <td>{{ $user->wallet_address }}</td>
+                            <td>{{ $user->email ?? 'N/A' }}</td>
                             <td>${{ number_format($user->funding_wallet ?? 0, 2) }}</td>
                             <td>${{ number_format($user->spot_wallet ?? 0, 2) }}</td>
-                            <td>${{ number_format($user->token_wallet ?? 0, 2) }}</td>
-                            <td>{{ $user->refer_code }}</td>
-                            <td>{{ $user->referredBy->name ?? 'N/A' }}</td>
-                            <td>
-                                <span class="badge {{ $user->email_verified_at ? 'bg-success' : 'bg-warning' }}">
-                                    {{ $user->email_verified_at ? 'Verified' : 'Unverified' }}
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge {{ $user->is_active ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $user->is_active ? 'Active' : 'Inactive' }}
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge {{ $user->is_block ? 'bg-danger' : 'bg-success' }}">
-                                    {{ $user->is_block ? 'Blocked' : 'Unblocked' }}
-                                </span>
-                            </td>
+                            <td>{{ $user->referredBy->wallet_address ?? 'N/A' }}</td>
                             <td>
                                 <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-eye"></i> View
@@ -96,7 +72,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="15" class="text-center">No users found.</td>
+                            <td colspan="8" class="text-center">No users found.</td>
                         </tr>
                     @endforelse
                 </tbody>

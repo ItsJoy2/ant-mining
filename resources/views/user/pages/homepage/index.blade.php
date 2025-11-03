@@ -10,9 +10,13 @@
     <title>{{ $generalSettings->app_name ?? 'Edulife' }}</title>
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}">
     <style>
+    @font-face {
+    font-family: 'Digital7';
+    src: url('/assets/user/fonts/digital-7/digital-7.ttf') format('truetype');
+    }
         body {
             background: #121212;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Digital7';
             margin: 0;
             overflow: hidden;
             display: flex;
@@ -21,7 +25,15 @@
             height: 100vh;
             position: relative;
         }
-
+        #statusContainer {
+            color: white;
+            text-align: left;
+            font-family: 'Digital7';
+            white-space: pre-wrap;
+            background: transparent;
+            font-size: 18px;
+            line-height: 1.8;
+        }
         canvas {
             position: absolute;
             top: 0;
@@ -72,7 +84,7 @@
 
 <div class="agreement-card" id="agreementCard">
     <pre id="statusContainer"
-         style="color:white; text-align:left; font-family: monospace; white-space: pre-wrap; background: transparent; font-size: 15px; line-height: 1.6;"></pre>
+         style="color:white; text-align:left; white-space: pre-wrap; background: transparent; font-size: 15px; line-height: 1.6;"></pre>
 
     <div class="d-flex flex-column flex-sm-row justify-content-center" id="buttonsContainer" style="text-align:center;">
         <button class="btn btn-agree" id="agreeBtn">Agree</button>
@@ -99,20 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const agreeBtn = document.getElementById("agreeBtn");
     const disagreeBtn = document.getElementById("disagreeBtn");
 
-    // টাইপিং ইফেক্ট
     function typeLine(msg) {
         return new Promise(async (resolve) => {
             const line = document.createElement("div");
             line.style.transition = "color 0.3s ease";
             container.appendChild(line);
 
-            // টাইপিং অ্যানিমেশন
             for (let i = 0; i < msg.length; i++) {
                 line.textContent += msg[i];
                 await new Promise(r => setTimeout(r, 40));
             }
 
-            // যদি শেষে "..." থাকে, তাহলে ২ বার লোডিং অ্যানিমেশন করবে
             if (msg.endsWith("...")) {
                 for (let round = 0; round < 2; round++) {
                     for (let i = 1; i <= 3; i++) {
@@ -122,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // ✅ রঙ পরিবর্তন + চেক আইকন
             line.innerHTML = `<span style="color: #00ff6a;">✔</span> ${msg.replace("...", "")}`;
             line.style.color = "#00ff6a";
             await new Promise(r => setTimeout(r, 400));
@@ -130,25 +138,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ✅ Agree ফাংশন
+
     async function agree() {
-        // 💥 ক্লিকের সাথেসাথেই বাটন লুকাও
+
         buttonsContainer.style.display = "none";
 
-        // টাইপিং শুরু
         for (const msg of messages) {
             await typeLine(msg);
         }
 
-        // সবশেষে রিডাইরেক্ট
+
         setTimeout(() => {
             window.location.href = "{{ url('/login') }}";
         }, 800);
     }
 
-    // ✅ Disagree ফাংশন
     function disagree() {
-        buttonsContainer.style.display = "none"; // 💥 ক্লিকের সাথেসাথেই লুকাবে
+        buttonsContainer.style.display = "none";
 
         if (window.opener) {
             window.close();
@@ -157,11 +163,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ইভেন্ট লিসেনার অ্যাড করো
+
     agreeBtn.addEventListener("click", agree);
     disagreeBtn.addEventListener("click", disagree);
 
-    // 🎇 ব্যাকগ্রাউন্ড পার্টিকলস
+
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particlesArray;

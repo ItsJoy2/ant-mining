@@ -50,6 +50,34 @@ class User extends Authenticatable
         return $this->hasMany(Investor::class, 'user_id');
     }
 
+    public function directReferralsCount(): int
+    {
+        return $this->referrals()->count();
+    }
+
+public function teamCountLevels2to6($currentLevel = 1, $maxLevel = 6)
+{
+    $count = 0;
+
+    if ($currentLevel >= 2 && $currentLevel <= $maxLevel) {
+        // Count this level's referrals
+        $count += $this->referrals()->count();
+    }
+
+    if ($currentLevel < $maxLevel) {
+        // Recurse for each referral
+        foreach ($this->referrals as $referral) {
+            $count += $referral->teamCountLevels2to6($currentLevel + 1, $maxLevel);
+        }
+    }
+
+    return $count;
+}
+
+
+
+
+
 }
 
 

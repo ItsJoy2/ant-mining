@@ -18,14 +18,14 @@
                     <h5>Basic Information</h5>
                     <table class="table table-bordered">
                         <tr>
-                            <th>Name</th>
-                            <td>{{ $user->name }}</td>
+                            <th>Wallet Address</th>
+                            <td>{{ $user->wallet_address }}</td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->email ?? 'N/A' }}</td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <th>Mobile</th>
                             <td>{{ $user->mobile }}</td>
                         </tr>
@@ -62,23 +62,18 @@
                                     {{ $user->kyc_status ? 'Approved' : 'Pending' }}
                                 </span>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </table>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateUserModal">
                             Update User Info
                         </button>
-                    </div>
+                    </div> --}}
 
-                        @include('admin.pages.users.__UserUpdateModel')
+                        {{-- @include('admin.pages.users.__UserUpdateModel') --}}
 
-                </div>
-
-
-                {{-- Wallet & Referral Info --}}
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="mb-0">Wallet Information</h5>
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#walletUpdateModal">
                             <i class="bi bi-wallet2 me-1"></i> Update Wallet Balance
@@ -96,64 +91,32 @@
                             <th>Spot Wallet</th>
                             <td>${{ number_format($user->spot_wallet ?? 0, 2) }}</td>
                         </tr>
-                        <tr>
-                            <th>Token Wallet</th>
-                            <td>${{ number_format($user->token_wallet ?? 0, 2) }}</td>
-                        </tr>
                     </table>
+                </div>
+
+
+                {{-- Wallet & Referral Info --}}
+                <div class="col-md-6">
 
                     <h5>Referral Information</h5>
                     <table class="table table-bordered">
                         <tr>
-                            <th>Refer Code</th>
-                            <td>{{ $user->refer_code }}</td>
-                        </tr>
-                        <tr>
                             <th>Referred By</th>
                             <td>{{ $user->referredBy->name ?? 'N/A' }}</td>
                         </tr>
+                       <tr>
+                            <th>Direct Referrals</th>
+                            <td>{{ $user->directReferralsCount() }}</td>
+                        </tr>
+
                         <tr>
-                            <th>Total Team Members</th>
-                            <td>{{ $user->totalTeamMembersCount() }}</td>
+                            <th>Level 5 Team Members</th>
+                            <td>{{ $totalTeam }}</td>
                         </tr>
                     </table>
-                </div>
-            </div>
 
-            {{-- Additional Info Sections --}}
-            <div class="row">
-                {{-- If you have birthday, address, etc --}}
-                <div class="col-md-6 mb-3">
-                    <h5>Other Details</h5>
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Birthday</th>
-                            <td>{{ $user->birthday ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <th>NID / Passport</th>
-                            <td>{{ $user->nid_or_passport ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <th>Address</th>
-                            <td>{{ $user->address ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <th>Image</th>
-                            <td>
-                                @if($user->image)
-                                    <img src="{{ asset('storage/' . $user->image) }}" alt="User Image" class="img-thumbnail" style="max-width: 150px;">
-                                @else
-                                    <span class="text-muted">No Image</span>
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                {{-- If you track investments via investors --}}
-                <div class="col-md-6 mb-3">
-                    <h5>Investments</h5>
+                     {{-- If you track investments via investors --}}
+                     <h5>Investments</h5>
                     <table class="table table-bordered">
                         <tr>
                             <th>Total Invested Amount</th>
@@ -235,6 +198,7 @@
                         </div>
                     </div>
             </div>
+
         </div>
     </div>
 </div>

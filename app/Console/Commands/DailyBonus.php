@@ -22,7 +22,7 @@ class DailyBonus extends Command
 
         // Get all running investments due for return
         $investments = Investor::where('status', 'running')
-            ->whereDate('next_return_date', '<=', $now)
+            ->where('next_return_date', '<=', $now)
             ->with(['user', 'package'])
             ->get();
 

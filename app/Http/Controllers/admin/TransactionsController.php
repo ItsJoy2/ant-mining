@@ -16,10 +16,10 @@ class TransactionsController extends Controller
     {
         $query = Transactions::with('user')->orderBy('id', 'DESC');
 
-        // Filter by email (if given)
-        if ($request->filled('email')) {
+        // Filter by Wallet address (if given)
+        if ($request->filled('wallet_address')) {
             $query->whereHas('user', function ($q) use ($request) {
-                $q->where('email', 'like', '%' . $request->email . '%');
+                $q->where('wallet_address', 'like', '%' . $request->wallet_address . '%');
             });
         }
 

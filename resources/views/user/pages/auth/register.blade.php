@@ -62,7 +62,9 @@
                     <div class="form-group">
                         <label>Wallet Address</label>
                         <input type="text" class="form-control text-white p_input" name="wallet_address" value="{{ old('wallet_address') }}">
-                        @error('wallet_address') <small class="text-danger">{{ $message }}</small> @enderror
+                        {{-- <input type="text" class="form-control text-white p_input" name="wallet_address" value="{{ old('wallet_address') }}" pattern="^0x[a-fA-F0-9]{40}$" title="Wallet Address must be a valid EVM address (start with 0x and 42 characters long)" required> --}}
+
+                        {{-- @error('wallet_address') <small class="text-danger">{{ $message }}</small> @enderror --}}
                     </div>
 
                     <div class="form-group">

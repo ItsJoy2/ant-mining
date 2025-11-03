@@ -70,8 +70,21 @@ class AuthServices
     {
         // Validation
         $validator = Validator::make($request->all(), [
-            'wallet_address' => 'required|string|unique:users,wallet_address',
-            'refer_wallet'   => 'nullable|string|exists:users,wallet_address',
+            'wallet_address' => [
+                'required',
+                'string',
+                'unique:users,wallet_address',
+                'regex:/^0x[a-fA-F0-9]{40}$/',
+            ],
+            'refer_wallet' => [
+                'nullable',
+                'string',
+                'exists:users,wallet_address',
+                'regex:/^0x[a-fA-F0-9]{40}$/',
+            ],
+        ], [
+            'wallet_address.regex' => 'Wallet address must be a valid EVM address (start with 0x and 42 characters long).',
+            'refer_wallet.regex'   => 'Referral wallet must be a valid EVM address.',
         ]);
 
         if ($validator->fails()) {
@@ -85,7 +98,7 @@ class AuthServices
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Handle referral
+        //Handle referral
         $refer_by = null;
         if ($request->filled('refer_wallet')) {
             $referUser = User::where('wallet_address', $request->input('refer_wallet'))->first();
@@ -103,18 +116,15 @@ class AuthServices
             $refer_by = $referUser->id;
         }
 
-        //  Create new user (no password)
         $user = User::create([
             'wallet_address' => $request->wallet_address,
             'refer_by'       => $refer_by,
             'role'           => 'user',
         ]);
 
-        //  Auto login after registration
         Auth::login($user);
         $request->session()->regenerate();
 
-        //  Response
         if ($request->expectsJson()) {
             return response()->json([
                 'success' => true,
@@ -125,6 +135,7 @@ class AuthServices
 
         return redirect()->route('user.dashboard')->with('success', 'Account created successfully!');
     }
+
 
 
 

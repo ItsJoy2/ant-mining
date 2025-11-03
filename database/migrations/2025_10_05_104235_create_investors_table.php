@@ -20,9 +20,9 @@ return new class extends Migration
             $table->decimal('referral_bonus', 8, 2)->nullable();
             $table->enum('return_type', ['daily', 'monthly']);
             $table->integer('duration')->default(0);
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
-            $table->date('next_return_date')->nullable();
+            $table->dateTime('start_date');
+            $table->dateTime('end_date')->nullable();
+            $table->dateTime('next_return_date')->nullable();
             $table->integer('received_count')->default(0);
             $table->enum('status', ['running', 'completed', 'cancelled'])->default('running');
             $table->timestamps();

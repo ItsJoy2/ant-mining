@@ -34,7 +34,7 @@ class UsersController extends Controller
         }
 
         if (!empty($search)) {
-            $query->where('email', 'like', '%' . $search . '%');
+            $query->where('wallet_address', 'like', '%' . $search . '%');
         }
 
         $users = $query->orderByDesc('id')->paginate(10);
@@ -46,8 +46,9 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::with(['referredBy', 'investors'])->findOrFail($id);
+            $totalTeam = $user->teamCountLevels2to6();
 
-        return view('admin.pages.users.show', compact('user'));
+        return view('admin.pages.users.show', compact('user', 'totalTeam'));
     }
     public function update(Request $request)
     {
@@ -60,10 +61,8 @@ class UsersController extends Controller
             'is_block' => 'required|boolean',
         ]);
 
-        $user->name     = $request->name;
+        $user->name     = $request->wallet_address;
         $user->email    = $request->email;
-        $user->mobile   = $request->mobile;
-        $user->is_block = $request->is_block;
 
         $user->save();
 
@@ -74,7 +73,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'user_id'     => 'required|exists:users,id',
-            'wallet_type' => 'required|in:funding_wallet,spot_wallet,token_wallet',
+            'wallet_type' => 'required|in:funding_wallet,spot_wallet',
             'action_type' => 'required|in:add,subtract',
             'amount'      => 'required|numeric|min:0.01',
         ]);
@@ -83,7 +82,7 @@ class UsersController extends Controller
         $wallet = $request->wallet_type;
         $amount = $request->amount;
 
-        if (!in_array($wallet, ['funding_wallet', 'spot_wallet', 'token_wallet'])) {
+        if (!in_array($wallet, ['funding_wallet', 'spot_wallet'])) {
             return redirect()->back()->with('error', 'Invalid wallet type selected.');
         }
 

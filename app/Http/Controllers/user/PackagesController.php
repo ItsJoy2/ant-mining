@@ -113,26 +113,26 @@ class PackagesController extends Controller
                 'charge' => 0,
             ]);
 
-            $generalSetting = GeneralSetting::first();
-            $referralBonusPercent = $generalSetting->referral_bonus;
-            if ($referralBonusPercent > 0 && $user->refer_by) {
-                $referrer = User::find($user->refer_by);
-                if ($referrer) {
-                    $bonusAmount = round($amount * ($referralBonusPercent / 100), 5);
-                    $referrer->increment('spot_wallet', $bonusAmount);
+            // $generalSetting = GeneralSetting::first();
+            // $referralBonusPercent = $generalSetting->referral_bonus;
+            // if ($referralBonusPercent > 0 && $user->refer_by) {
+            //     $referrer = User::find($user->refer_by);
+            //     if ($referrer) {
+            //         $bonusAmount = round($amount * ($referralBonusPercent / 100), 5);
+            //         $referrer->increment('spot_wallet', $bonusAmount);
 
-                    Transactions::create([
-                        'transaction_id' => Transactions::generateTransactionId(),
-                        'user_id' => $referrer->id,
-                        'amount' => $bonusAmount,
-                        'remark' => "trade_bonus",
-                        'type' => '+',
-                        'status' => 'Paid',
-                        'details' => "Referral bonus from {$user->email}'s investment",
-                        'charge' => 0,
-                    ]);
-                }
-            }
+            //         Transactions::create([
+            //             'transaction_id' => Transactions::generateTransactionId(),
+            //             'user_id' => $referrer->id,
+            //             'amount' => $bonusAmount,
+            //             'remark' => "trade_bonus",
+            //             'type' => '+',
+            //             'status' => 'Paid',
+            //             'details' => "Referral bonus from {$user->email}'s investment",
+            //             'charge' => 0,
+            //         ]);
+            //     }
+            // }
 
             DB::commit();
 
