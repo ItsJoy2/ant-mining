@@ -35,7 +35,7 @@
                 <tr>
                     <th>#</th>
                     <th>TrxID:</th>
-                    <th>User</th>
+                    <th>Wallet Address</th>
                     <th>Amount</th>
                     <th>Status</th>
                     <th>Created At</th>
@@ -55,7 +55,7 @@
                                 <i class="fas fa-copy" style="line-height: 0;"></i>
                             </button>
                         </td>
-                        <td>{{ $deposit->user->name ?? 'N/A' }}</td>
+                        <td>{{ $deposit->user->wallet_address ?? 'N/A' }}</td>
                         <td>${{ number_format($deposit->amount, 4) }}</td>
 
 

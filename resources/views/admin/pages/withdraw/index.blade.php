@@ -36,7 +36,7 @@
                 <tr>
                     <th>#</th>
                     <th>Wallet Address</th>
-                    <th>User</th>
+                    {{-- <th>User</th> --}}
                     <th>Amount</th>
                     <th>Charge</th>
                     <th>Status</th>
@@ -58,7 +58,7 @@
                             </button>
                         </td>
 
-                        <td>{{ $withdraw->user->name ?? 'N/A' }}</td>
+                        {{-- <td>{{ $withdraw->user->name ?? 'N/A' }}</td> --}}
                         <td>${{ number_format($withdraw->amount, 3) }}</td>
                         <td>${{ number_format($withdraw->charge, 3) }}</td>
 

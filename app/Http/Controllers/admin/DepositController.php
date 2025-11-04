@@ -22,8 +22,7 @@ class DepositController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('transaction_id', 'LIKE', "%{$search}%")
                 ->orWhereHas('user', function ($userQuery) use ($search) {
-                    $userQuery->where('name', 'LIKE', "%{$search}%")
-                                ->orWhere('email', 'LIKE', "%{$search}%");
+                    $userQuery->where('wallet_address', 'LIKE', "%{$search}%");
                 });
             });
         }
