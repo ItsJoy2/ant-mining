@@ -29,7 +29,7 @@
                     @foreach($category->packages as $package)
                         <div class="col-md-6 col-lg-4 d-flex">
                             <div class="package-card w-100">
-                                <img src="{{ asset('public/storage/' . $package->image) }}" alt="Icon" class="package-icon-img">
+                                <img src="{{ asset('storage/' . $package->image) }}" alt="Icon" class="package-icon-img">
                                 <div class="package-title">{{ $package->plan_name }}</div>
                                 <div class="price-tag">${{ $package->min_investment }} - ${{ $package->max_investment }}</div>
                                 <hr style="border-top: 1px solid #ccc; margin: 1rem 0;">

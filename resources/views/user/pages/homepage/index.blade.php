@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $generalSettings->app_name ?? 'Edulife' }}</title>
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}">
+
+        @if($generalSettings && $generalSettings->favicon)
+            <link rel="icon" type="image/png" href="{{ asset('storage/' . $generalSettings->favicon) }}">
+            <link rel="apple-touch-icon" href="{{ asset('storage/' . $generalSettings->favicon) }}">
+        @else
+            <link rel="icon" type="image/png" href="{{ asset('default-favicon.png') }}">
+            <link rel="apple-touch-icon" href="{{ asset('default-favicon.png') }}">
+    @endif
     <style>
     @font-face {
     font-family: 'Digital7';
