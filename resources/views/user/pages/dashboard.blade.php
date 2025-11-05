@@ -44,6 +44,17 @@
               </div>
             </div> --}}
 
+
+<!-- 🔹 Logout Button (Top Right) -->
+<div class="logout-btn-container text-right" style="margin-bottom: 20px;">
+    <form action="{{ route('user.logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" class="btn btn-danger btn-sm logout-btn">
+            <i class="mdi mdi-logout"></i> Logout
+        </button>
+    </form>
+</div>
+
 {{-- wallet card section  --}}
 
             <div class="row text-center justify-content-center">
